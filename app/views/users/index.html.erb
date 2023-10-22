@@ -1,12 +1,32 @@
-<!-- ユーザーの詳細 -->
-<div>
 <!-- ユーザーの投稿一覧 -->
+<div class='container'>
+<div class='row'>
 <%= render 'user' %>
-<% @users.each do |use| %>
-<div>
-  <p><%= image_tag use.get_profile_image(100,100) %></p>
-  <p><%= use.name %></p>
-  <p><%= link_to "show", user_path(use.id) %></p>
+
+
+
+<div class="col-md-8 offset-md-1">
+  
+  <h2>Books</h2>
+  <table class='table table-hover table-inverse'>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |use| %>
+      <tr>
+        <th><p><%= image_tag use.get_profile_image(100,100) %></p></th>
+        <th><p><%= use.name %></p></th>
+        <th><p><%= link_to "show", user_path(use.id) %></p></th>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 </div>
-<% end %>
+</div>
+</div>
