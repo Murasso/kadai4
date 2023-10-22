@@ -1,0 +1,14 @@
+<% flash.each do |message_type, message| %>
+  <div class="flash-message <%= message_type %>"><%= message %></div>
+<% end %>
+<%= render 'book' %>
+<p>Title:<%= link_to @book.title, book_path(@book.id)%></p>
+
+<p>Body: <%= @book.body %></p>
+<p><%=link_to @book.user.name, user_path(@book.user.id) %></p>
+ <% if @book.user == current_user %>
+    <%= link_to "Edit", edit_book_path(@book.id)%>
+    |
+    <%= link_to "Delete", book_path(@book), method: :delete %>
+<% end %>
+

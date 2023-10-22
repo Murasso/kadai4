@@ -1,0 +1,12 @@
+<!-- ユーザーの詳細 -->
+<div>
+<!-- ユーザーの投稿一覧 -->
+<%= render 'user' %>
+<% @users.each do |use| %>
+<div>
+  <p><%= image_tag use.get_profile_image(100,100) %></p>
+  <p><%= use.name %></p>
+  <p><%= link_to "show", user_path(use.id) %></p>
+
+</div>
+<% end %>
