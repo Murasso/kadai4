@@ -1,11 +1,44 @@
 <div class='container'>
   
 <div class='row'>
-<%= render 'book' %>
+<% if user_signed_in? %>
+    <div class='col-md-3'>
+    <h1>User info</h1>
+    <div>
+      <table class='table'>
+        <tr><%= image_tag @book.user.get_profile_image(100,100) %></tr>
+        <tr>
+      	  <th>name</th>
+      	  <th><%= @book.user.name %></th>
+        </tr>
+        <tr>
+      	  <th>introduction</th>
+      	  <th><%= @book.user.introduction %></th>
+        </tr>
+      </table>
+     <%= link_to edit_user_path(User.find(@book.user.id)), class:"btn btn-outline-secondary btn-block" do%>
+      <i class="fa-solid fa-user-gear"></i>
+     <% end %>     
+     <h1 class="mt-3">New book</h1>
+    <%= form_with model: Book.new, method: :post do |f| %>
+      <div class="form-group">
+        <h4>Title</h4>
+        <%= f.text_field :title %>
+      </div>
+      <div class="form-group">
+        <h4>Opinion</h4>
+        <%= f.text_area :body %>
+      </div>
+      <%= f.submit 'Create Book',class:"btn btn-success" %>
+    <% end %>
+    </div>
+     </div>   
+   
+  <% end %>
 
 
 <div class="col-md-8 offset-md-1">
-  <h2>Books</h2>
+  <h2>Book detail</h2>
   <table class='table table-hover table-inverse'>
     <thead>
       <tr>
@@ -21,7 +54,7 @@
         <th><p><%= @book.body %></p></th>
          <% if @book.user == current_user %>
             <th><p><%= link_to "Edit", edit_book_path(@book.id), class:"btn btn-sm btn-success" %></p></th>
-            <th><p><%= link_to "Delete", book_path(@book), method: :delete,class:"btn btn-sm btn-danger" %></p></th>
+            <th><p><%= link_to "Destroy", book_path(@book), method: :delete,class:"btn btn-sm btn-danger" %></p></th>
         <% end %>
       </tr>
     </tbody>
