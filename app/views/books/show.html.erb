@@ -20,8 +20,8 @@
         <th><p><%= link_to @book.title, book_path(@book.id)%></p></th>
         <th><p><%= @book.body %></p></th>
          <% if @book.user == current_user %>
-            <th><p><%= link_to "Edit", edit_book_path(@book.id)%></p></th>
-            <th><p><%= link_to "Delete", book_path(@book), method: :delete %></p></th>
+            <th><p><%= link_to "Edit", edit_book_path(@book.id), class:"btn btn-sm btn-success" %></p></th>
+            <th><p><%= link_to "Delete", book_path(@book), method: :delete,class:"btn btn-sm btn-danger" %></p></th>
         <% end %>
       </tr>
     </tbody>

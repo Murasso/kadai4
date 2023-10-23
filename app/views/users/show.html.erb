@@ -18,8 +18,8 @@
        <% @books.each do |book| %>
       <tr>
         <th><p><%= image_tag @user.get_profile_image(100,100) %></p></th>
-        <th><p>Title：<%= link_to book.title, book_path(book.id)%></p></th>
-        <th><p>Opinion：<%= book.body %></p></th>
+        <th><p><%= link_to book.title, book_path(book.id)%></p></th>
+        <th><p><%= book.body %></p></th>
       </tr>
       <% end %>
     </tbody>
